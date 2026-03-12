@@ -80,20 +80,49 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // 6. CONTACT FORM
+  // 6. CONTACT FORM — powered by Formspree
   var form = document.getElementById('contact-form');
   var ok   = document.getElementById('form-success');
   if (form) {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      var n = document.getElementById('name').value.trim();
-      var em = document.getElementById('email').value.trim();
+
+      // Basic validation
+      var n   = document.getElementById('name').value.trim();
+      var em  = document.getElementById('email').value.trim();
       var msg = document.getElementById('message').value.trim();
-      if (!n || !em || !msg) { alert('Please fill in name, email and message.'); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { alert('Please enter a valid email.'); return; }
+      if (!n || !em || !msg) { alert('Please fill in your name, email and message.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { alert('Please enter a valid email address.'); return; }
+
       var btn = form.querySelector('button[type="submit"]');
-      btn.textContent = 'Sending...'; btn.disabled = true;
-      setTimeout(function () { btn.style.display = 'none'; ok.style.display = 'block'; form.reset(); }, 1000);
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        var response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          // Success
+          btn.style.display = 'none';
+          ok.style.display  = 'block';
+          form.reset();
+        } else {
+          var data = await response.json();
+          var errMsg = (data.errors && data.errors.map(function(e){ return e.message; }).join(', '))
+                       || 'Something went wrong. Please try again.';
+          alert(errMsg);
+          btn.textContent = 'Send Message →';
+          btn.disabled = false;
+        }
+      } catch (err) {
+        alert('Network error. Please check your connection and try again.');
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+      }
     });
   }
 
