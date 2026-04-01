@@ -1,8 +1,3 @@
-/* =============================================
-   DIPESH KC — PORTFOLIO  |  style.css
-   Light, warm, professional
-   ============================================= */
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -833,50 +828,122 @@ img { max-width: 100%; display: block; }
 [data-reveal].visible { opacity: 1; transform: translateY(0); }
 
 /* =============================================
-   RESPONSIVE
+   RESPONSIVE — TABLET (max 1000px)
    ============================================= */
 @media (max-width: 1000px) {
-  .hero-container { grid-template-columns: 1fr; text-align: center; gap: 48px; padding: 40px 24px 24px; }
+  .hero-container { grid-template-columns: 1fr; text-align: center; gap: 40px; padding: 40px 24px 24px; }
   .hero-photo-side { justify-content: center; }
-  .photo-frame { width: 260px; height: 260px; }
-  .photo-outer-ring { width: 290px; height: 290px; }
-  .photo-dashed-ring { width: 320px; height: 320px; }
-  .hero-badge { right: 50%; transform: translateX(140px); }
-  .hero-location { left: 50%; transform: translateX(-140px); }
+  .photo-frame { width: 240px; height: 240px; }
+  .photo-outer-ring { width: 268px; height: 268px; }
+  .photo-dashed-ring { width: 296px; height: 296px; }
+  .hero-badge { right: 50%; transform: translateX(128px); }
+  .hero-location { left: 50%; transform: translateX(-128px); }
   .hero-eyebrow { justify-content: center; }
-  .hero-bio { margin: 0 auto 32px; border-left: none; padding-left: 0; }
-  .hero-actions, .hero-socials { justify-content: center; }
-  .hero-roles { justify-content: center; }
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
-  .skills-grid, .proj-grid { grid-template-columns: 1fr; }
+  .hero-bio { margin: 0 auto 28px; border-left: none; padding-left: 0; }
+  .hero-actions, .hero-socials, .hero-roles { justify-content: center; }
+  .section { padding: 72px 20px; }
+  .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
   .feat-card { grid-column: span 1; }
-  .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .contact-wrap { grid-template-columns: 1fr; gap: 36px; }
   .cform-row { grid-template-columns: 1fr; }
-  .tl { grid-template-columns: 80px 28px 1fr; }
-  .section { padding: 80px 24px; }
-  .hstat { padding: 0 24px; }
-  .hero-stats { padding: 24px; }
+  .tl { grid-template-columns: 72px 28px 1fr; }
+  .hstat { padding: 0 16px; }
+  .hero-stats { padding: 20px 16px; flex-wrap: wrap; gap: 16px; }
+  .hstat-div { display: none; }
+  .hstat { flex: 1 1 40%; align-items: center; }
   .nav-toggle { display: flex; }
   .nav-links {
     position: fixed; top: var(--nav-h); left: 0; right: 0;
     background: var(--bg); border-bottom: 1px solid var(--border);
     flex-direction: column; align-items: stretch;
-    padding: 16px 24px; gap: 4px;
+    padding: 12px 20px 20px; gap: 4px;
     transform: translateY(-110%); transition: transform 0.3s ease;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 999;
   }
   .nav-links.open { transform: translateY(0); }
-  .nl { padding: 12px 16px; border-radius: 10px; }
-  .cta-link { text-align: center; margin-left: 0; }
+  .nl { padding: 12px 16px; border-radius: 10px; font-size: 1rem; }
+  .cta-link { text-align: center; margin-left: 0; margin-top: 4px; }
+  .nav-container { padding: 0 20px; }
 }
 
+/* =============================================
+   RESPONSIVE — MOBILE (max 560px)
+   ============================================= */
 @media (max-width: 560px) {
-  .hero-heading { font-size: 3rem; }
-  .hstat-div { display: none; }
-  .hero-stats { flex-wrap: wrap; gap: 20px; }
-  .hstat { flex: 1 1 40%; }
-  .tl { grid-template-columns: 0 24px 1fr; }
-  .tl-badge-now, .tl-period { display: none; }
-  .tl-body { padding-left: 10px; }
-  .nav-container { padding: 0 20px; }
+  /* Hero */
+  .hero-heading { font-size: 2.8rem; }
+  .hero-bio { font-size: 0.95rem; }
+  .photo-frame { width: 200px; height: 200px; }
+  .photo-outer-ring { width: 224px; height: 224px; }
+  .photo-dashed-ring { width: 248px; height: 248px; }
+  .hero-badge { bottom: 8px; right: 50%; transform: translateX(108px); font-size: 0.72rem; padding: 6px 12px; }
+  .hero-location { top: 6px; left: 50%; transform: translateX(-108px); font-size: 0.72rem; padding: 5px 12px; }
+  .hero-actions { flex-direction: column; align-items: center; gap: 10px; }
+  .hero-actions .btn-fill,
+  .hero-actions .btn-ring { width: 100%; max-width: 280px; justify-content: center; }
+
+  /* Timeline — vertical stack with left dot line */
+  .tl {
+    display: flex;
+    flex-direction: column;
+    padding-left: 24px;
+    position: relative;
+    margin-bottom: 0;
+    grid-template-columns: unset;
+  }
+  .tl-badge-now, .tl-period {
+    display: inline-flex;
+    font-size: 0.65rem;
+    margin-bottom: 6px;
+    order: 0;
+  }
+  .tl-dot-col {
+    position: absolute;
+    left: 0; top: 0;
+    height: 100%;
+    width: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tl-dot { margin-top: 4px; width: 12px; height: 12px; flex-shrink: 0; }
+  .tl-dot-col::after {
+    content: "";
+    flex: 1;
+    width: 1.5px;
+    background: linear-gradient(to bottom, var(--accent-ring), transparent);
+    margin-top: 4px;
+  }
+  .last-tl .tl-dot-col::after { display: none; }
+  .tl-body { padding: 0 0 28px 0; order: 1; width: 100%; }
+  .tl-body h4 { font-size: 0.98rem; }
+  .tl-body p  { font-size: 0.87rem; }
+  .last-tl .tl-body { padding-bottom: 0; }
+
+  /* About */
+  .about-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .acard { padding: 18px 14px; }
+  .acard-n { font-size: 1.8rem; }
+  .quote-acard { grid-column: span 2; }
+  .at-row { font-size: 0.82rem; padding: 10px 14px; }
+
+  /* Skills / Projects */
+  .sk-block { padding: 20px; }
+  .proj-card { padding: 22px; }
+
+  /* Education */
+  .edu-card { flex-direction: column; gap: 12px; padding: 20px; }
+  .edu-flag { font-size: 1.8rem; }
+
+  /* Contact */
+  .cform { padding: 20px; }
+  .clink { padding: 12px 14px; }
+  .clink strong { font-size: 0.78rem; word-break: break-all; }
+
+  /* General */
+  .sec-hd { margin-bottom: 40px; }
+  .section { padding: 60px 16px; }
+  .footer { padding: 32px 16px; }
 }
