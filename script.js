@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // 6. CONTACT FORM — powered by Formspree
+  // 6. CONTACT FORM 
   var form = document.getElementById('contact-form');
   var ok   = document.getElementById('form-success');
   if (form) {
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.disabled = true;
 
       try {
-        var response = await fetch(form.action, {
+        var response = await fetch('https://formspree.io/f/xlgpnldk', {
           method: 'POST',
           body: new FormData(form),
           headers: { 'Accept': 'application/json' }
